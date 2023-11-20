@@ -1,20 +1,10 @@
 <template>
   <div class="menu">
-    <a>Home</a>
-    <a>Products</a>
-    <a>About</a>
+    <a v-for="메뉴 in 메뉴들" :key="메뉴">{{ 메뉴 }}</a>
   </div>
-  <div>
-    <h4>{{ products[0] }}</h4>
+  <div v-for="product in products" :key="product">
+    <h4>{{ product }}</h4>
     <p> 50 만원</p>
-  </div>
-  <div>
-    <h4>{{ products[1] }}</h4>
-    <p>60 만원</p>
-  </div>
-  <div>
-    <h4>{{ products[2] }}</h4>
-    <p>70 만원</p>
   </div>
 </template>
 
@@ -26,6 +16,7 @@ export default {
   data() {
     return {
       products: ['마포구 원룸', '관악구 원룸', '송파구 원룸'],
+      메뉴들: ['Home', 'Shop', 'About']
     }
   },
   components: {
@@ -41,7 +32,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 .menu {
