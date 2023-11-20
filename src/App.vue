@@ -1,5 +1,9 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
+  <div class="menu">
+    <a>Home</a>
+    <a>Products</a>
+    <a>About</a>
+  </div>
   <div>
     <h4>{{ products[0] }}</h4>
     <p> 50 만원</p>
@@ -38,5 +42,16 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.menu {
+  background-color: darkslateblue;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.menu a {
+  color: white;
+  padding: 10px;
 }
 </style>
