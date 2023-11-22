@@ -3,21 +3,24 @@
     <a v-for="메뉴 in 메뉴들" :key="메뉴">{{ 메뉴 }}</a>
   </div>
   <div>
+    <img src="./assets/room0.jpg" class="room-img">
     <h4>{{ products[0] }}</h4>
     <p>50만원</p>
-    <button @click="increase(0)">허위매물신고</button>
+    <button @click=" 신고수[0]++">허위매물신고</button>
     <span>신고수 : {{ 신고수[0] }} </span>
   </div>
   <div>
+    <img src="./assets/room1.jpg" class="room-img">
     <h4>{{ products[1] }}</h4>
     <p>50만원</p>
-    <button @click="increase(1)">허위매물신고</button>
+    <button @click="신고수[1]++">허위매물신고</button>
     <span>신고수 : {{ 신고수[1] }} </span>
   </div>
   <div>
+    <img src="./assets/room2.jpg" class="room-img">
     <h4>{{ products[2] }}</h4>
     <p>50만원</p>
-    <button @click="increase(2)">허위매물신고</button>
+    <button @click="신고수[2]++">허위매물신고</button>
     <span>신고수 : {{ 신고수[2] }} </span>
   </div>
 </template>
@@ -34,11 +37,6 @@ export default {
       메뉴들: ['Home', 'Shop', 'About'],
     }
   },
-  methods: {
-    increase(index) {
-      this.신고수[index] += 1;
-    }
-  },
   components: {
 
   }
@@ -52,6 +50,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.room-img {
+  width: 100%;
+  margin-top: 40px;
 }
 
 .menu {
