@@ -1,8 +1,10 @@
 <template>
   <div class="black-bg" v-if="모달창열렸니 == true">
     <div class="white-bg">
-      <h4>상세페이지임</h4>
-      <p>상세페이지 내용임</p>
+      <img :src="원룸들[누른거].image">
+      <h4>{{ 원룸들[누른거].title }}</h4>
+      <p>{{ 원룸들[누른거].content }}</p>
+      <p>{{ 원룸들[누른거].price }}</p>
       <button @click="모달창열렸니 = false">닫기</button>
     </div>
   </div>
@@ -10,36 +12,23 @@
   <div class="menu">
     <a v-for="메뉴 in 메뉴들" :key="메뉴">{{ 메뉴 }}</a>
   </div>
-  <div>
-    <img src="./assets/room0.jpg" class="room-img">
-    <h4 @click="모달창열렸니 = true">{{ products[0] }}</h4>
-    <p>50만원</p>
-    <button @click=" 신고수[0]++">허위매물신고</button>
-    <span>신고수 : {{ 신고수[0] }} </span>
-  </div>
-  <div>
-    <img src="./assets/room1.jpg" class="room-img">
-    <h4>{{ products[1] }}</h4>
-    <p>50만원</p>
-    <button @click="신고수[1]++">허위매물신고</button>
-    <span>신고수 : {{ 신고수[1] }} </span>
-  </div>
-  <div>
-    <img src="./assets/room2.jpg" class="room-img">
-    <h4>{{ products[2] }}</h4>
-    <p>50만원</p>
-    <button @click="신고수[2]++">허위매물신고</button>
-    <span>신고수 : {{ 신고수[2] }} </span>
+  <div v-for="(oneroom, i) in 원룸들" :key="i">
+    <img :src="oneroom.image" class="room-img">
+    <h4 @click="모달창열렸니 = true; 누른거 = i">{{ oneroom.title }}</h4>
+    <p>{{ oneroom.price }}원</p>
   </div>
 </template>
 
 <script>
+import data from './assets/oneroom.js';
 
 
 export default {
   name: 'App',
   data() {
     return {
+      누른거: 0,
+      원룸들: data,
       신고수: [0, 0, 0],
       products: ['마포구 원룸', '관악구 원룸', '송파구 원룸'],
       메뉴들: ['Home', 'Shop', 'About'],
