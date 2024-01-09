@@ -6,18 +6,14 @@
   </div>
 
   <Discount />
-
-  <div v-for="(oneroom, i) in 원룸들" :key="i">
-    <img :src="oneroom.image" class="room-img">
-    <h4 @click="모달창열렸니 = true; 누른거 = i">{{ oneroom.title }}</h4>
-    <p>{{ oneroom.price }}원</p>
-  </div>
+  <Card @openModal="모달창열렸니 = true; 누른거 = $event" :원룸="원룸들[i]" v-for="(원룸, i) in 원룸들" :key="원룸" />
 </template>
 
 <script>
 import data from './assets/oneroom.js';
 import Discount from './components/DiscountBanner.vue';
 import Modal from './components/Modal.vue';
+import Card from './components/Card.vue';
 
 export default {
   name: 'App',
@@ -32,7 +28,7 @@ export default {
     }
   },
   components: {
-    Discount, Modal,
+    Discount, Modal, Card,
   }
 }
 </script>
@@ -44,11 +40,6 @@ export default {
 
 div {
   box-sizing: border-box;
-}
-
-.room-img {
-  width: 100%;
-  margin-top: 40px;
 }
 
 .menu {
