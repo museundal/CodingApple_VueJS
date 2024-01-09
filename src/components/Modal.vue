@@ -6,7 +6,7 @@
             <p>{{ 원룸들[누른거].content }}</p>
             <p>{{ 원룸들[누른거].price }}</p>
             <Discount />
-            <!-- <button @click="모달창열렸니 = false">닫기</button> -->
+            <button @click="$emit('closeModal')">닫기</button>
         </div>
     </div>
 </template>
