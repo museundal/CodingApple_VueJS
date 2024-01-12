@@ -19,12 +19,18 @@ export default {
             month: 1,
         }
     },
-    watch: {
-        month(a) {
-            if (isNaN(a) == true) {
-                alert('숫자만 입력해주세요')
-                this.month = 1;
-            }
+    // watch: {
+    //     month(a) {
+    //         if (isNaN(a) == true) {
+    //             alert('숫자만 입력해주세요')
+    //             this.month = 1;
+    //         }
+    //     }
+    // },
+    beforeUpdate() {
+        if (this.month == 2) {
+            alert('2개월은 너무적습니다.') // 가격이 업뎃 되기전에
+            this.month = 3;
         }
     },
     props: {
