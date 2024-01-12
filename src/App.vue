@@ -8,8 +8,13 @@
     <a v-for="메뉴 in 메뉴들" :key="메뉴">{{ 메뉴 }}</a>
   </div>
 
-  <Discount />
+  <Discount v-if="showDiscount == true" />
 
+  <button @click="priceSort">가격순정렬</button>
+  <button @click="expensivePrice">가격역순정렬</button>
+  <button @click="expensivePrice">가격역순정렬</button>
+  <button @click="abcSort">가나다정렬</button>
+  <button @click="sortBack">되돌리기</button>
   <Card @openModal="모달창열렸니 = true; 누른거 = $event" :원룸="원룸들[i]" v-for="(원룸, i) in 원룸들" :key="원룸" />
 </template>
 
@@ -23,7 +28,9 @@ export default {
   name: 'App',
   data() {
     return {
+      showDiscount: true,
       누른거: 0,
+      원룸들오리지널: [...data],
       원룸들: data,
       신고수: [0, 0, 0],
       products: ['마포구 원룸', '관악구 원룸', '송파구 원룸'],
@@ -31,8 +38,38 @@ export default {
       모달창열렸니: false
     }
   },
+  mounted() { // mount 되고나서
+    setTimeout(() => {
+      this.showDiscount = false;
+    }, 2000);
+  },
   components: {
     Discount, Modal, Card,
+  },
+  methods: {
+    priceSort() {
+      this.원룸들.sort(function (a, b) {
+        return a.price - b.price
+      })
+    },
+    abcSort() {
+      this.원룸들.sort(function (a, b) {
+        return a.title.localeCompare(b.title);
+      })
+    },
+    expensivePrice() {
+      this.원룸들.sort(function (a, b) {
+        return b.price - a.price
+      })
+    },
+    notFifty() {
+      this.원룸들.sort(function (a) {
+        return a.price < 500000;
+      })
+    },
+    sortBack() {
+      this.원룸들 = [...this.원룸들오리지널];
+    }
   }
 }
 </script>
