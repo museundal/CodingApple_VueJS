@@ -1,107 +1,52 @@
 <template>
-  <Transition name="fade">
-    <Modal @closeModal="모달창열렸니 = false;" :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니" />
-  </Transition>
-
-
-  <div class="menu">
-    <a v-for="메뉴 in 메뉴들" :key="메뉴">{{ 메뉴 }}</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#"> <router-link to="/">Home</router-link></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"> <router-link to="/list">List</router-link></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><router-link to="/detail">Detail</router-link></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="mt-4">
+    <router-view :블로그글="블로그글"></router-view> <!-- <List :블로그글="블로그글" /> , 라우터로 설정한 컴포넌트를 보여줄 자리 -->
   </div>
-
-  <Discount />
-
-  <button @click="priceSort">가격순정렬</button>
-  <button @click="expensivePrice">가격역순정렬</button>
-  <button @click="expensivePrice">가격역순정렬</button>
-  <button @click="abcSort">가나다정렬</button>
-  <button @click="sortBack">되돌리기</button>
-  <Card @openModal="모달창열렸니 = true; 누른거 = $event" :원룸="원룸들[i]" v-for="(원룸, i) in 원룸들" :key="원룸" />
 </template>
 
 <script>
-import data from './assets/oneroom.js';
-import Discount from './components/DiscountBanner.vue';
-import Modal from './components/Modal.vue';
-import Card from './components/Card.vue';
+// import List from './components/List.vue';
+import blog from './assets/blog'
 
 export default {
   name: 'App',
+  components: {
+
+  },
   data() {
     return {
-      누른거: 0,
-      원룸들오리지널: [...data],
-      원룸들: data,
-      신고수: [0, 0, 0],
-      products: ['마포구 원룸', '관악구 원룸', '송파구 원룸'],
-      메뉴들: ['Home', 'Shop', 'About'],
-      모달창열렸니: false
+      블로그글: blog
     }
   },
-  components: {
-    Discount, Modal, Card,
-  },
-  methods: {
-    priceSort() {
-      this.원룸들.sort(function (a, b) {
-        return a.price - b.price
-      })
-    },
-    abcSort() {
-      this.원룸들.sort(function (a, b) {
-        return a.title.localeCompare(b.title);
-      })
-    },
-    expensivePrice() {
-      this.원룸들.sort(function (a, b) {
-        return b.price - a.price
-      })
-    },
-    notFifty() {
-      this.원룸들.sort(function (a) {
-        return a.price < 500000;
-      })
-    },
-    sortBack() {
-      this.원룸들 = [...this.원룸들오리지널];
-    }
-  }
 }
 </script>
 
 <style>
-.fade-enter-from {
-  /* opacity: 0; */
-  transform: translateY(-1000px);
-}
-
-.fade-enter-active {
-  transition: all 1s;
-}
-
-.fade-enter-to {
-  /* opacity: 1; */
-  transform: translateY(0px);
-}
-
-.body {
-  margin: 0
-}
-
-div {
-  box-sizing: border-box;
-}
-
-.menu {
-  background-color: darkslateblue;
-  padding: 15px;
-  border-radius: 5px;
-}
-
-.menu a {
-  color: white;
-  padding: 10px;
-}
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
