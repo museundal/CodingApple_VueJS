@@ -20,7 +20,8 @@ export default {
         }
     },
     // watch: {
-    //     month(a) {
+    //month() 이렇게 지으면 month 데이터 감시자가 되는 것임
+    //     month(a) {  a는 month가 변경될 값
     //         if (isNaN(a) == true) {
     //             alert('숫자만 입력해주세요')
     //             this.month = 1;
